@@ -1,8 +1,10 @@
-package com.dmitco.blogproject;
+package com.dmitco.blogproject.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.dmitco.blogproject.R;
 
 public class MainActivity extends AppCompatActivity {
 
