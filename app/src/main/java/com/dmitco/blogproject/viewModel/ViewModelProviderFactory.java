@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dmitco.blogproject.data.Repository;
+import com.dmitco.blogproject.data.remote.RemoteRepository;
 
 
 public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFactory {
@@ -19,7 +20,9 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
         if (INSTANCE==null){
             synchronized (ViewModelProviderFactory.class){
                 if (INSTANCE==null){
-                    INSTANCE = new ViewModelProviderFactory(application,Repository.getInstance());
+                    RemoteRepository remoteRepository = RemoteRepository.getInstance();
+                    Repository repository = Repository.getInstance(remoteRepository);
+                    INSTANCE = new ViewModelProviderFactory(application,repository);
                 }
             }
         }

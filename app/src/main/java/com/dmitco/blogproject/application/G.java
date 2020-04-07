@@ -7,9 +7,9 @@ import androidx.multidex.MultiDexApplication;
 
 public class G extends MultiDexApplication {
 
-    public static final boolean DEBUG = true;
+
     public static Context context;
-    public static G mInstance;
+    private static G mInstance;
     public static Typeface iranSans_normal;
     public static Typeface iranSans_bold;
     public static Typeface iranSans_light;
@@ -26,5 +26,8 @@ public class G extends MultiDexApplication {
         iranSans_light = Typeface.createFromAsset(getAssets(),"fonts/IRANSansMobile(FaNum)_Light.ttf");
         iranSans_medium = Typeface.createFromAsset(getAssets(),"fonts/IRANSansMobile(FaNum)_Medium.ttf");
         iranSans_ultraLight = Typeface.createFromAsset(getAssets(),"fonts/IRANSansMobile(FaNum)_UltraLight.ttf");
+    }
+    public static G getInstance(){
+        return mInstance;
     }
 }
