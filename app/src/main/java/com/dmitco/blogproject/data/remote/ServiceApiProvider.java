@@ -56,7 +56,7 @@ public class ServiceApiProvider {
                         .addHeader("Content-Type", "application/json")
                         //.addHeader("Token", from shared preference)
                         .addHeader("Platform", "Android")
-                        .addHeader("AndroidVersion", String.valueOf(Build.VERSION.SDK_INT))
+                        .addHeader("AndroidApiLevel", String.valueOf(Build.VERSION.SDK_INT))
                         .addHeader("VersionCode", String.valueOf(BuildConfig.VERSION_CODE))
                         .addHeader("VersionName", BuildConfig.VERSION_NAME)
                         .build();
