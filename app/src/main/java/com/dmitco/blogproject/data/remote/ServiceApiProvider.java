@@ -17,6 +17,9 @@ import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.mock.BehaviorDelegate;
+import retrofit2.mock.MockRetrofit;
+import retrofit2.mock.NetworkBehavior;
 
 import static com.dmitco.blogproject.application.BuildVariants.BASE_URL;
 
@@ -32,7 +35,18 @@ public class ServiceApiProvider {
     public ServiceApi getService(){
 
         if (remoteService==null){
-            remoteService = retrofit.create(ServiceApi.class);
+
+            NetworkBehavior behavior = NetworkBehavior.create();
+            MockRetrofit mockRetrofit = new MockRetrofit.Builder(retrofit)
+                    .networkBehavior(behavior)
+                    .build();
+
+            BehaviorDelegate<ServiceApi> delegate = mockRetrofit.create(ServiceApi.class);
+            MockServiceData.MockService service  = new MockServiceData.MockService(delegate);
+            behavior.setDelay(1000, TimeUnit.MILLISECONDS);
+
+            remoteService = service;
+//            remoteService = retrofit.create(ServiceApi.class);
         }
         return remoteService;
     }

@@ -1,6 +1,8 @@
 package com.dmitco.blogproject.data;
 
+import com.dmitco.blogproject.data.remote.CallBack;
 import com.dmitco.blogproject.data.remote.RemoteRepository;
+import com.dmitco.blogproject.model.Login;
 
 public class Repository {
     private static Repository INSTANCE ;
@@ -20,5 +22,9 @@ public class Repository {
 
     private Repository(RemoteRepository remoteRepository) {
         this.remoteRepository = remoteRepository;
+    }
+
+    public void login(String userName, String password, CallBack<Login> callBack){
+        remoteRepository.login(userName, password, callBack);
     }
 }

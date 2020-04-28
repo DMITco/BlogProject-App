@@ -3,6 +3,7 @@ package com.dmitco.blogproject.data.remote;
 import com.dmitco.blogproject.R;
 import com.dmitco.blogproject.application.Constants;
 
+import com.dmitco.blogproject.model.Login;
 import com.dmitco.blogproject.utility.Utils;
 
 import org.json.JSONObject;
@@ -72,6 +73,12 @@ public class RemoteRepository {
             }
         };
     }
+
+    public void login(String userName, String password, CallBack<Login> callBack){
+
+        api.login(userName,password).enqueue(makeCallBack(callBack));
+    }
+
 
 
 }

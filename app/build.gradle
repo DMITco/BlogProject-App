@@ -39,13 +39,18 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'com.google.android.material:material:1.1.0'
 
-    // ViewModel and LiveData
-    implementation "android.arch.lifecycle:extensions:1.1.1"
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata:2.2.0"
 
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:2.7.1"
     implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.0.0'
+    implementation 'com.squareup.retrofit2:retrofit-mock:2.7.1'
 
 }
