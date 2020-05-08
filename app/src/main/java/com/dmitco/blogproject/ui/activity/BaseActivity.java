@@ -19,7 +19,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public abstract void initializeViews();
-    public abstract void initialize();
+    public abstract void initialize(Bundle savedInstanceState);
 
 
     public void showSnackBar(String message, int viewGroupId, View.OnClickListener listener) {

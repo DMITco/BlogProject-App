@@ -31,7 +31,7 @@ public class SplashScreenActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         initializeViews();
-        initialize();
+        initialize(savedInstanceState);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class SplashScreenActivity extends BaseActivity {
     }
 
     @Override
-    public void initialize() {
+    public void initialize(Bundle savedInstanceState) {
 
         initViewModel();
         setFonts();

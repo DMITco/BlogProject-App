@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+<!--    <style name="bottomNavigationFont"-->
+<!--        parent="Widget.Design.BottomNavigationView">-->
+<!--        <item name="fontFamily">@font/iransans_fanum_light</item>-->
+<!--    </style> -->
+
+    <style name="bottomNavigationFont"
+        parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="fontFamily">@font/iransans_fanum_light</item>
+    </style>
+
 </resources>

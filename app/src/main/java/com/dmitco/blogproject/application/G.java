@@ -5,7 +5,10 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.util.Log;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.multidex.MultiDexApplication;
+
+import com.dmitco.blogproject.R;
 
 public class G extends MultiDexApplication {
 
@@ -27,11 +30,12 @@ public class G extends MultiDexApplication {
         mInstance = this;
         context = getApplicationContext();
         sharedPref = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        iranSans_normal = Typeface.createFromAsset(getAssets(),"fonts/IRANSansMobile(FaNum).ttf");
-        iranSans_bold = Typeface.createFromAsset(getAssets(),"fonts/IRANSansMobile(FaNum)_Bold.ttf");
-        iranSans_light = Typeface.createFromAsset(getAssets(),"fonts/IRANSansMobile(FaNum)_Light.ttf");
-        iranSans_medium = Typeface.createFromAsset(getAssets(),"fonts/IRANSansMobile(FaNum)_Medium.ttf");
-        iranSans_ultraLight = Typeface.createFromAsset(getAssets(),"fonts/IRANSansMobile(FaNum)_UltraLight.ttf");
+
+        iranSans_normal = ResourcesCompat.getFont(context, R.font.iransans_fanum);
+        iranSans_bold = ResourcesCompat.getFont(context, R.font.iransans_fanum_bold);
+        iranSans_light = ResourcesCompat.getFont(context, R.font.iransans_fanum_light);
+        iranSans_medium = ResourcesCompat.getFont(context, R.font.iransans_fanum_medium);
+        iranSans_ultraLight = ResourcesCompat.getFont(context, R.font.iransans_fanum_ultra_light);
     }
     public static G getInstance(){
         return mInstance;
