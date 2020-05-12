@@ -19,6 +19,7 @@ public class BaseFragment extends Fragment {
         // Required empty public constructor
     }
     FragmentNavigation mfragmentNavigation;
+    Context context;
 
 
     @Override
@@ -34,10 +35,13 @@ public class BaseFragment extends Fragment {
         if (context instanceof FragmentNavigation) {
              mfragmentNavigation = (FragmentNavigation) context;
         }
+        this.context = context;
     }
 
 
     public interface FragmentNavigation {
         void pushFragment(Fragment fragment);
+
+        void popFragment(int popDepth);
     }
 }

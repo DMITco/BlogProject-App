@@ -18,40 +18,29 @@ import com.dmitco.blogproject.utility.Utils;
 
 public class SplashViewModel extends BaseViewModel {
 
-
-    private MutableLiveData<Boolean> showProgress;
     private MutableLiveData<String> navigateToMainScreen;
     private MutableLiveData<String> navigateToDownloadPage;
-    private MutableLiveData<String>  showMessage;
-
-    public LiveData<Boolean> getShowProgress() {
-        return showProgress;
-    }
 
     public LiveData<String> getNavigateToMainScreen() {
         return navigateToMainScreen;
     }
-
     public LiveData<String> getNavigateToDownloadPage() {
         return navigateToDownloadPage;
     }
 
-    public LiveData<String> getShowMessage() {
-        return showMessage;
-    }
 
     public SplashViewModel(Application application, Repository repository) {
         super(application, repository);
-        showProgress = new MutableLiveData<>();
+
         navigateToMainScreen = new MutableLiveData<>();
         navigateToDownloadPage = new MutableLiveData<>();
-        showMessage = new MutableLiveData<>();
+
         login();
     }
 
     public void login(){
 
-        showProgress.setValue(true);
+        setShowProgressValue(true);
         String userName = "";
         String password = "";
         ModelUserNamePassword userPass = Preference.getUserPass();
@@ -63,7 +52,7 @@ public class SplashViewModel extends BaseViewModel {
         repository.login(userName, password, new CallBack<Login>() {
             @Override
             public void onSuccess(Login login) {
-                showProgress.setValue(false);
+                setShowProgressValue(false);
                 if (login!=null && login.getVersion()!= null){
                     Preference.setLogin(login);
                     Version version = login.getVersion();
@@ -77,15 +66,15 @@ public class SplashViewModel extends BaseViewModel {
                        navigateToMainScreen.setValue(null);
                     }
                 }else {
-                    showMessage.setValue(Utils.getString(R.string.defaultErrorMessage));
+                    setShowMessageValue(Utils.getString(R.string.defaultErrorMessage));
                 }
             }
 
             @Override
             public void onFail(ResponseException e) {
-                showProgress.setValue(false);
+                setShowProgressValue(false);
                 String message = e.getMessage() != null ? e.getMessage() : Utils.getString(R.string.defaultErrorMessage);
-                showMessage.setValue(message);
+                setShowMessageValue(message);
             }
         });
     }

@@ -43,6 +43,8 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return (T) new MainActivityViewModel(application,repository);
         }else if (modelClass.isAssignableFrom(SplashViewModel.class)){
             return (T) new SplashViewModel(application,repository);
+        }else if (modelClass.isAssignableFrom(HomeViewModel.class)){
+            return (T) new HomeViewModel(application,repository);
         }
 
         throw new IllegalArgumentException("UnKnown ViewModel class :"+modelClass.getName());

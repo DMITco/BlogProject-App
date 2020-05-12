@@ -4,9 +4,12 @@ import com.dmitco.blogproject.R;
 import com.dmitco.blogproject.application.Constants;
 
 import com.dmitco.blogproject.model.Login;
+import com.dmitco.blogproject.model.Post;
 import com.dmitco.blogproject.utility.Utils;
 
 import org.json.JSONObject;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -80,5 +83,7 @@ public class RemoteRepository {
     }
 
 
-
+    public void getPosts(int page,int pageSize,CallBack<List<Post>> callBack) {
+        api.getPosts(page,pageSize).enqueue(makeCallBack(callBack));
+    }
 }

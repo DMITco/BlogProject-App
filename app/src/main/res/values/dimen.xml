@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="toolbarTextSize">14dp</dimen>
+    <dimen name="toolbarElevation">1dp</dimen>
+    <dimen name="app_xmedium_text">14dp</dimen>
+</resources>

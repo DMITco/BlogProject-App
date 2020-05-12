@@ -64,6 +64,7 @@ public class MainActivity extends BaseActivity implements
         mNavController = new FragNavController(getSupportFragmentManager(),R.id.container);
         mNavController.setRootFragmentListener(this);
         mNavController.setTransactionListener(this);
+        mNavController.setFragmentHideStrategy(FragNavController.HIDE);//prevent call onCreateView again when switch between tabs
         mNavController.initialize(BOTTOM_NAVIGATION_COUNTS-1,savedInstanceState);
 
         //fragmentHistory
@@ -82,7 +83,7 @@ public class MainActivity extends BaseActivity implements
     public int getNumberOfRootFragments() {
         return BOTTOM_NAVIGATION_COUNTS;
     }
-    //fragment navigation
+    //fragment navigation controller
     @NotNull
     @Override
     public Fragment getRootFragment(int index) {
@@ -100,25 +101,42 @@ public class MainActivity extends BaseActivity implements
         throw new IllegalStateException("Need to send an index that we know");
     }
 
-    //fragment navigation
+    //fragment navigation controller
     @Override
     public void onFragmentTransaction(@Nullable Fragment fragment, @NotNull FragNavController.TransactionType transactionType) {
 
     }
-    //fragment navigation
+    //fragment navigation controller
     @Override
     public void onTabTransaction(@Nullable Fragment fragment, int i) {
 
     }
 
-    //fragment navigation
+    //endregion
+
+    //region fragment navigation interface
     @Override
     public void pushFragment(Fragment fragment) {
         if (mNavController != null) {
             mNavController.pushFragment(fragment);
         }
     }
- //endregion
+
+    @Override
+    public void popFragment(int popDepth) {
+        if (mNavController != null) {
+            mNavController.popFragments(popDepth);
+        }
+    }
+    //endregion
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mNavController != null) {
+            mNavController.onSaveInstanceState(outState);
+        }
+    }
 
     //bottom navigation
     @Override

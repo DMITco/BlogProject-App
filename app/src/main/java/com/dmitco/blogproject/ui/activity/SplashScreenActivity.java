@@ -14,6 +14,7 @@ import com.dmitco.blogproject.BuildConfig;
 import com.dmitco.blogproject.R;
 import com.dmitco.blogproject.application.Constants;
 import com.dmitco.blogproject.application.G;
+import com.dmitco.blogproject.utility.Event;
 import com.dmitco.blogproject.utility.Utils;
 import com.dmitco.blogproject.viewModel.SplashViewModel;
 import com.dmitco.blogproject.viewModel.ViewModelProviderFactory;
@@ -55,11 +56,13 @@ public class SplashScreenActivity extends BaseActivity {
 
     private void initObservers() {
 
-        Observer<Boolean> showProgress = new Observer<Boolean>() {
+        Observer<Event<Boolean>> showProgress = new Observer<Event<Boolean>>() {
             @Override
-            public void onChanged(Boolean aBoolean) {
-                float alpha = aBoolean ? 100: 0;
-                progressBar.setAlpha(alpha);
+            public void onChanged(Event<Boolean> event) {
+                if(event.getContentIfNotHandled()!=null){
+                    float alpha = event.peekContent() ? 100: 0;
+                    progressBar.setAlpha(alpha);
+                }
             }
         };
         Observer<String> navigateToMainScreen = new Observer<String>() {
@@ -79,15 +82,18 @@ public class SplashScreenActivity extends BaseActivity {
                 //todo : create new activity and navigate to for download updates
             }
         };
-        Observer<String> showMessage = new Observer<String>() {
+
+        Observer<Event<String>> showMessage = new Observer<Event<String>>() {
             @Override
-            public void onChanged(String s) {
-                showSnackBar(s, R.id.rootElement, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        viewModel.login();
-                    }
-                });
+            public void onChanged(Event<String> event) {
+                if (event.getContentIfNotHandled()!=null){
+                    Utils.showSnackBar(event.peekContent(), findViewById(R.id.rootElement), new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            viewModel.login();
+                        }
+                    });
+                }
             }
         };
 
